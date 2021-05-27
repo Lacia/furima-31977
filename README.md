@@ -32,7 +32,7 @@ Things you may want to cover:
 | nickname              | string | null: false                   |
 | email                 | string | null: false, unique: true     |
 | password              | string | null: false                   |
-| password_confirmation | string | null: false                   |
+| encrypted_password    | string | null: false                   |
 | last_name             | string | null: false                   |
 | first_name            | string | null: false                   |
 | last_name_kana        | string | null: false                   |
@@ -47,16 +47,15 @@ Things you may want to cover:
 
 | Column                   | Type       | Options                         |
 | -------------------------| ------     | ---------------------------     |
-| item_image               | string     | null: false                     |
-| item_name                | string     | null: false                     |
-| item_info                | text       | null: false                     |
-| item_category            | integer    | null: false                     |
-| item_sales_status        | integer    | null: false                     |
-| item_shipping_fee_status | integer    | null: false                     |
-| item_prefecture          | integer    | null: false                     |
-| item_scheduled_delivery  | integer    | null: false                     |
-| item_price               | integer    | null: false                     |
-| seller_user_id           | references | null: false, foreign_key: true  |
+| name                     | string     | null: false                     |
+| info                     | text       | null: false                     |
+| category_id              | integer    | null: false                     |
+| sales_status_id          | integer    | null: false                     |
+| shipping_fee_status_id   | integer    | null: false                     |
+| prefecture_id            | string     | null: false                     |
+| scheduled_delivery_id    | integer    | null: false                     |
+| price                    | integer    | null: false                     |
+| user                     | references | null: false, foreign_key: true  |
 ### Association
 
 - belongs_to :user
@@ -66,13 +65,13 @@ Things you may want to cover:
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_addresses
+- has_one :shipping_address
 
 ## shipping_addressesテーブル（発送先住所）
 
@@ -84,7 +83,7 @@ Things you may want to cover:
 | addresses    | string     | null: false                    |
 | building     | string     |                                |
 | phone_number | string     | null: false                    |
-| purchase_id  | references | null: false, foreign_key: true |
+| purchase     | references | null: false, foreign_key: true |
 
 ### Association
 
